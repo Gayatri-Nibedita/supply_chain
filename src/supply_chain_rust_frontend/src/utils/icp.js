@@ -1,6 +1,6 @@
 import { HttpAgent, Actor } from "@dfinity/agent";
-import { idlFactory } from "../../../declarations/supply_chain_rust_backend/supply_chain_rust_backend.did.js";
-import { canisterId } from "../../../declarations/supply_chain_rust_backend";
+import { idlFactory } from "declarations/supply_chain_rust_backend/supply_chain_rust_backend.did.js";
+import { canisterId } from "declarations/supply_chain_rust_backend";
 
 const agent = new HttpAgent();
 
