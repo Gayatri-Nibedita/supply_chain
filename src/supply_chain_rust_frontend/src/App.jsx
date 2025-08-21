@@ -1,50 +1,35 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import "./index.scss"; // Must be at top
-import backgroundVideo from "./assets/VID_20240506_172609331 (1).mp4";
-import logo from "./assets/Screenshot_2025-07-05_203645-removebg-preview.png";
-import { useWalletConnectOnProfile } from "./walletConnectRouterPatch";
-
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import AddProduct from "./pages/AddProduct";
+import TransferOwnership from "./pages/TransferOwnership";
+import AddCertification from "./pages/AddCertification";
+import ViewProduct from "./pages/ViewProduct";
+import ViewHistory from "./pages/ViewHistory";
+import VerifyOwnership from "./pages/VerifyOwnership";
+import ProductsByOwner from "./pages/ProductsByOwner";
+import "./styles/global.css";
 
 function App() {
-  useWalletConnectOnProfile();
-
-  const navigate = useNavigate();
-
-
   return (
-    <div className="background-wrapper">
-      {/* Background Video */}
-      <video className="video-background" autoPlay loop muted playsInline>
-        <source src={backgroundVideo} type="video/mp4" />
-      </video>
-
-      {/* Overlay */}
-      <div className="overlay" />
-
-      {/* Header */}
-      <div className="header">
-        <img src={logo} alt="Logo" className="logo" />
-        <div className="nav-links">
-          <button className="btn" onClick={() => navigate("/profile")}>
-            Connect Wallet
-          </button>
-        </div>
+    <Router>
+      <div className="app">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route path="/transfer-ownership" element={<TransferOwnership />} />
+            <Route path="/add-certification" element={<AddCertification />} />
+            <Route path="/view-product" element={<ViewProduct />} />
+            <Route path="/view-history" element={<ViewHistory />} />
+            <Route path="/verify-ownership" element={<VerifyOwnership />} />
+            <Route path="/products-by-owner" element={<ProductsByOwner />} />
+          </Routes>
+        </main>
       </div>
-
-      {/* Hero Text */}
-      <div className="hero">
-        <h1>See It. Trust It. Trace It. </h1>
-        <h3>— Powered by Blockchain</h3>
-        <p>
-          Discover the future of supply chain management with our blockchain-based platform. Ensure complete transparency, verify certifications, and trace ownership — from source to shelf — with immutable records and real-time tracking.
-        </p>
-        <button className="btn" onClick={() => navigate("/landing")}>
-          Get Started
-        </button>
-      </div>
-    </div>
+    </Router>
   );
 }
 
